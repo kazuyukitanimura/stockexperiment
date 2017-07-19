@@ -3005,12 +3005,19 @@ bought 10:23:00 AM 24522
   SELL 1:42:00 PM 24548 25 20517 1
 7/18/2017 [ 25815, 25815, 25425, 24595 ] [ 22498, 22498, 22065 ]
 =====
-size: 152880
+  SELL 9:30:00 AM 24609 25 20540 1
+bought 10:15:00 AM 24635
+  SELL 11:46:00 AM 24658 25 20563 1
+bought 11:55:00 AM 24653
+  SELL 1:50:00 PM 24676 25 20586 1
+7/19/2017 [ 25815, 25815, 25425 ] [ 22498, 22498, 22065 ]
+=====
+size: 153270
 SPY
-elapsed: 392 days 0 minutes
-gain: 20517 per day = 0.25555044047793424 %
+elapsed: 393 days 0 minutes
+gain: 20586 per day = 0.2557574307373321 %
 pGain/(pGain+nGain): 1 kelly criterion: NaN
-sigma: 1.5767587131402254 ave gain: 18.517148014440433 ratio: 11.743805732687049 # trades:  1108
+sigma: 1.5917200473720403 ave gain: 18.52925292529253 ratio: 11.64102503821867 # trades:  1111
 max draw down:  0
-buy and hold: 4085 profit factor: Infinity payoff ratio:  NaN
-pGain*ave/sigma/days: 33.194226407697066
+buy and hold: 4218 profit factor: Infinity payoff ratio:  NaN
+pGain*ave/sigma/days: 32.90885195282683
