@@ -4,7 +4,16 @@
 
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install -y build-essential git htop tightvncserver xfce4 unzip ntp python
+sudo apt-get install -y build-essential git htop tightvncserver xfce4 unzip ntp python python-pip
+
+# awscli
+pip install --upgrade --user awscli
+mkdir ~/.aws
+vi ~/.aws/credentials
+[default]
+aws_access_key_id=
+aws_secret_access_key=
+region=
 
 # satart vnc and set up password
 vncserver
