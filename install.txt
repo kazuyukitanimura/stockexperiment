@@ -40,5 +40,5 @@ echo "export EDITOR=vim" >> ~/.bashrc
 
 # cleanup and save disk space
 sudo apt-get autoclean
-sudo apt-get autoremove
+sudo apt-get autoremove -y
 sudo apt-get clean
