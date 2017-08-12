@@ -115,7 +115,7 @@ var handleTickPrice = function(tickerId, field, price, canAutoExecute) {
             company.tickTime = tickTime;
           }
         } else if (!orderPlaced && (actionI === BUY || actionI === AUTO)) {
-          if (lotsDiff < 3) {
+          if (lotsDiff < 4) {
             orderPlaced = true;
             placeMyOrder(company, BUY, quantity, 'LMT', price, true, false);
           } else if (actionI !== AUTO) {
@@ -132,7 +132,7 @@ var handleTickPrice = function(tickerId, field, price, canAutoExecute) {
             company.tickTime = tickTime;
           }
         } else if (!orderPlaced && (actionI === SELL || actionI === AUTO)) {
-          if ((lotsDiff > -3 && actionI === SELL) || lotsDiff > 2) {
+          if ((lotsDiff > -4 && actionI === SELL) || lotsDiff > 3) {
             orderPlaced = true;
             placeMyOrder(company, SELL, quantity, 'LMT', price, true, false);
           } else if (actionI !== AUTO) {

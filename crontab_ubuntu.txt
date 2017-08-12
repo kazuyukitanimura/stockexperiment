@@ -13,5 +13,5 @@ workdir=/home/ubuntu/stockexperiment
 29 19 * * 0-4 cd ${workdir}; node oneoff.js ES AUTO 1 0 2>&1 | tee ${workdir}/oneoff.js.log || aws sns publish --topic-arn "" --message "returncode=$? date=$(date)"
 00 2 * * 1-5 cd ${workdir}; node connection.js 2>&1 | tee ${workdir}/connection.js.log || aws sns publish --topic-arn "" --message "returncode=$? date=$(date)"
 29 2 * * 1-5 cd ${workdir}; node oneoff.js ES AUTO 1 0 2>&1 | tee ${workdir}/oneoff.js.log || aws sns publish --topic-arn "" --message "returncode=$? date=$(date)"
-#30 8 * * 1-5 cd ${workdir}; node connection.js 2>&1 | tee ${workdir}/connection.js.log || aws sns publish --topic-arn "" --message "returncode=$? date=$(date)"
-#59 8 * * 1-5 cd ${workdir}; node oneoff.js ES AUTO 1 0 2>&1 | tee ${workdir}/oneoff.js.log || aws sns publish --topic-arn "" --message "returncode=$? date=$(date)"
+30 8 * * 1-5 cd ${workdir}; node connection.js 2>&1 | tee ${workdir}/connection.js.log || aws sns publish --topic-arn "" --message "returncode=$? date=$(date)"
+59 8 * * 1-5 cd ${workdir}; node oneoff.js ES AUTO 1 0 2>&1 | tee ${workdir}/oneoff.js.log || aws sns publish --topic-arn "" --message "returncode=$? date=$(date)"
