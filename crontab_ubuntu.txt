@@ -1,6 +1,6 @@
 # disable sending emails
 MAILTO=""
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:$PATH
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/home/ubuntu/.local/bin/:$PATH
 workdir=/home/ubuntu/stockexperiment
 10 9 * * 1-5 pkill node || true
 12 9 * * 1-5 sudo renice -n -6 -p $(ps --no-heading -Lo tid $(pidof java))
