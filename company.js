@@ -37,6 +37,10 @@ var MAX_LOTS = {
   ZN: 2
 };
 
+var MAX_LOTS_DIFF = {
+  ES: 5
+};
+
 var HARD_L_MAX_PERCENTS = {
   SPY: [1.019, 1.014, 1.009, 1.004, 0.999],
   ES: [1.019, 1.015, 1.011, 1.007, 1.003],
@@ -87,6 +91,7 @@ var Company = module.exports = function(symbol) {
   this.onePosition = ONE_POSITIONS[symbol] || 0;
   this.oneTickInverse = (1.0 / (ONE_TICKS[symbol] || 0.01));
   this.maxLot = MAX_LOTS[symbol] || 0;
+  this.maxLotDiff = MAX_LOTS_DIFF[symbol] || 0;
   this.hardLMaxPrices = [];
   this.hardLMinPrices = [];
   this.hardSMinPrices = [];

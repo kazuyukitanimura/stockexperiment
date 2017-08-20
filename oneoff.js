@@ -105,6 +105,7 @@ var handleTickPrice = function(tickerId, field, price, canAutoExecute) {
       var prevTickTime = company.tickTime + 1699;
       var tickTime = 1478840331260; // some init time in msec
       var lotsDiff = company.lLotsLength - company.sLotsLength;
+      var maxLotDiff = company.maxLotDiff;
       if (field === 1) { // bid price
         var bid = company.bid;
         company.bid = price;
@@ -115,7 +116,7 @@ var handleTickPrice = function(tickerId, field, price, canAutoExecute) {
             company.tickTime = tickTime;
           }
         } else if (!orderPlaced && (actionI === BUY || actionI === AUTO)) {
-          if (lotsDiff < 4) {
+          if (lotsDiff < maxLotDiff) {
             orderPlaced = true;
             placeMyOrder(company, BUY, quantity, 'LMT', price, true, false);
           } else if (actionI !== AUTO) {
@@ -132,7 +133,7 @@ var handleTickPrice = function(tickerId, field, price, canAutoExecute) {
             company.tickTime = tickTime;
           }
         } else if (!orderPlaced && (actionI === SELL || actionI === AUTO)) {
-          if ((lotsDiff > -4 && actionI === SELL) || lotsDiff > 3) {
+          if ((lotsDiff > -maxLotDiff && actionI === SELL) || lotsDiff >= maxLotDiff) {
             orderPlaced = true;
             placeMyOrder(company, SELL, quantity, 'LMT', price, true, false);
           } else if (actionI !== AUTO) {
