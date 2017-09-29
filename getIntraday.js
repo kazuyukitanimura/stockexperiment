@@ -28,7 +28,7 @@ var tickerId = process.argv[2] || 'SPY';
 var readNewData = process.argv[3];
 
 var googleCSVReader = new GoogleCSVReader(tickerId);
-var url = ['http://www.google.com/finance/getprices?i=', INTERVAL, '&p=', PERIOD, 'd&f=d,o,h,l,c,v&df=cpct&q=', tickerId.toUpperCase()].join('');
+var url = ['http://finance.google.com/finance/getprices?i=', INTERVAL, '&p=', PERIOD, 'd&f=d,o,h,l,c,v&df=cpct&q=', tickerId.toUpperCase()].join('');
 
 var backtest = function() {
   var data = googleCSVReader.data;
