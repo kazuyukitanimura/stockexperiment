@@ -123,11 +123,9 @@ var handleRealTimeBar = function(reqId, barOpen, barHigh, barLow, barClose, volu
   var hardSMaxPrices = company.hardSMaxPrices;
   var symbol = company.symbol;
   var isBuy = action === BUY;
-  var isHold = action === HOLD;
   var lmtPrice = isBuy ? bid : ask;
-  if (isHold && ((hour === 10 && minute === 21) || (hour === 15 && minute === 59))) {
+  if ((hour === 10 && minute === 21) || (hour === 15 && minute === 59)) {
     // force buy or sell
-    isHold = false;
     if (lengthDiff < company.maxLotDiff) {
       action = BUY;
       isBuy = true;
@@ -137,7 +135,7 @@ var handleRealTimeBar = function(reqId, barOpen, barHigh, barLow, barClose, volu
       isBuy = false;
       lmtPrice = ask;
     }
-  } else if (isHold || (isBuy && ((lLotsLength >= maxLot && lengthDiff > 1) || lLotsLength >= hardLMaxPrices.length)) || (action === SELL && ((sLotsLength >= maxLot && lengthDiff < 0) || sLotsLength >= hardSMinPrices.length))) {
+  } else if (action === HOLD || (isBuy && ((lLotsLength >= maxLot && lengthDiff > 1) || lLotsLength >= hardLMaxPrices.length)) || (action === SELL && ((sLotsLength >= maxLot && lengthDiff < 0) || sLotsLength >= hardSMinPrices.length))) {
     log(Date(), symbol, low, high, bid, ask, mid);
     return;
   } else if (isBuy ? (lmtPrice > hardLMaxPrices[lLotsLength] || lmtPrice < hardLMinPrices[lLotsLength]) : (lmtPrice < hardSMinPrices[sLotsLength] || lmtPrice > hardSMaxPrices[sLotsLength])) {
