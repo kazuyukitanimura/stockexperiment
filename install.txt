@@ -32,10 +32,10 @@ sudo npm install -g forever node-gyp
 npm install
 crontab crontab_ubuntu.txt
 
-# java8
-sudo apt-add-repository ppa:webupd8team/java
-sudo apt-get update
-sudo apt-get install -y oracle-java8-installer
+# java8 is included in ib gateway
+# sudo apt-add-repository ppa:webupd8team/java
+# sudo apt-get update
+# sudo apt-get install -y oracle-java8-installer
 
 # ib gateway
 wget https://download2.interactivebrokers.com/installers/ibgateway/stable-standalone/ibgateway-stable-standalone-linux-x64.sh
