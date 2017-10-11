@@ -124,7 +124,7 @@ var handleRealTimeBar = function(reqId, barOpen, barHigh, barLow, barClose, volu
   var symbol = company.symbol;
   var isBuy = action === BUY;
   var lmtPrice = isBuy ? bid : ask;
-  if ((hour === 10 && minute === 21) || (hour === 12 && minute === 23) || (hour === 14 && minute === 0) || (hour === 15 && minute === 59)) {
+  if ((hour === 10 && minute === 21) || (hour === 12 && minute === 23) || (hour === 15 && minute === 59)) {
     // force buy or sell
     if (lengthDiff < company.maxLotDiff) {
       action = BUY;
