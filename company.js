@@ -38,7 +38,7 @@ var MAX_LOTS = {
 };
 
 var MAX_LOTS_DIFF = {
-  ES: 5
+  ES: 6
 };
 
 var HARD_L_MAX_PERCENTS = {
