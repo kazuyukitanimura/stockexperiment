@@ -6,8 +6,6 @@ sudo apt-get update
 sudo apt-get upgrade -y
 # sudo apt-get dist-upgrade -y
 sudo apt-get install -y build-essential git htop tightvncserver unzip ntp python python-pip
-# sudo apt-get install -y xfce4
-# sudo apt-get install -y lxde-core
 
 # awscli
 pip install --upgrade --user awscli
@@ -35,17 +33,13 @@ sudo npm install -g forever node-gyp
 npm install
 crontab crontab_ubuntu.txt
 
-# java8 is included in ib gateway
-# sudo apt-add-repository ppa:webupd8team/java
-# sudo apt-get update
-# sudo apt-get install -y oracle-java8-installer
-
 # ib gateway
 wget https://download2.interactivebrokers.com/installers/ibgateway/stable-standalone/ibgateway-stable-standalone-linux-x64.sh
 chmod u+x ibgateway-stable-standalone-linux-x64.sh
 ./ibgateway-stable-standalone-linux-x64.sh
 vi ~/Jts/jts.ini # change gdc1.ibllc.com to cdc1.ibllc.com
-DISPLAY=:1 $HOME/Jts/ibgateway/963/ibgateway
+DISPLAY=:1 $HOME/Jts/ibgateway/963/ibgateway &
+disown
 # vnc to the machine, setup ibgateway
 
 # bashrc

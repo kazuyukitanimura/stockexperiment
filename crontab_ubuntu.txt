@@ -8,6 +8,6 @@ workdir=/home/ubuntu/stockexperiment
 16 9 * * 1-5 sudo renice -n -6 -p $(ps --no-heading -Lo tid $(pidof nodejs))
 16 16 * * 1-5 forever stopall
 17 16 * * 1-5 pkill node || true
-00 18 * * * if ! pgrep "Xtightvnc" > /dev/null; then vncserver; fi
+00 18 * * * if ! pgrep "Xtightvnc" > /dev/null; then vncserver :1; fi
 30 8 * * 1-5 cd ${workdir}; node connection.js 2>&1 | tee ${workdir}/connection.js.log || aws sns publish --topic-arn "" --message "returncode=$? date=$(date)"
 59 8 * * 1-5 cd ${workdir}; node oneoff.js ES AUTO 1 0 2>&1 | tee ${workdir}/oneoff.js.log || aws sns publish --topic-arn "" --message "returncode=$? date=$(date)"
