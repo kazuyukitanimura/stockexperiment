@@ -15,6 +15,3 @@ sed -i.bak 's/TICK_EFP:/TICK_EFP:break;/' ${clientpath}/EDecoder.cpp
 sed -i.bak 's/m_pEWrapper->tickSize/;\/\/m_pEWrapper->tickSize/' ${clientpath}/EDecoder.cpp
 sed -i.bak 's/bool EDecoder::CheckOffset/inline bool EDecoder::CheckOffset/' ${clientpath}/EDecoder.cpp
 sed -i.bak 's/const char\* EDecoder::FindFieldEnd/inline const char\* EDecoder::FindFieldEnd/' ${clientpath}/EDecoder.cpp
-#sed -i.bak 's/bool EDecoder::DecodeField/inline bool EDecoder::DecodeField/' ${clientpath}/EDecoder.cpp
-sed -i.bak 's/bool EClient::isConnected/inline bool EClient::isConnected/' ${clientpath}/EClient.cpp
-#sed -i.bak 's/void EClient::EncodeField/inline void EClient::EncodeField/' ${clientpath}/EClient.cpp
