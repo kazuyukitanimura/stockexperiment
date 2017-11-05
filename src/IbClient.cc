@@ -15,6 +15,7 @@ IbClient::IbClient(long contractLength, int32_t hourOffset) : m_pClient(new ECli
  offset = 0;
  msgSize = INT_SIZE;
  isMsgSize = true;
+ fds[0].events = POLLIN | POLLPRI;
 }
 
 IbClient::~IbClient() {
@@ -43,36 +44,12 @@ void IbClient::disconnect() const {
 }
 
 void IbClient::processMessages() {
-  fd_set readSet, writeSet, errorSet;
-
-  struct timeval tval;
-  tval.tv_usec = 0; // timeout immediately (no blocking)
-  tval.tv_sec = 0; // timeout immediately (no blocking)
-
   if (m_pClient->fd() >= 0) {
-    FD_ZERO(&readSet);
-    errorSet = writeSet = readSet;
-    FD_SET(m_pClient->fd(), &readSet);
-    FD_SET(m_pClient->fd(), &writeSet);
-    FD_SET(m_pClient->fd(), &errorSet);
-    int ret = select(m_pClient->fd() + 1, &readSet, &writeSet, &errorSet, &tval);
+    fds[0].fd = m_pClient->fd();
+    int ret = poll(fds, 1, 0);
     if (ret == 0) { // timeout
       return;
-    }
-    if (ret < 0) { // error
-      disconnect();
-      return;
-    }
-    if (m_pClient->fd() < 0) {
-      return;
-    }
-    if (FD_ISSET(m_pClient->fd(), &errorSet)) { // error on socket
-      m_pClient->onError();
-    }
-    if (m_pClient->fd() < 0) {
-      return;
-    }
-    if (FD_ISSET(m_pClient->fd(), &readSet)) { // socket is ready for reading
+    } else if (ret > 0) { // socket is ready for reading
       int size = m_pClient->receive(m_buf, IN_BUF_SIZE);
       char* start = m_buf;
       while (size > 0) {
@@ -139,12 +116,9 @@ void IbClient::processMessages() {
           }
         }
       }
+    } else { // error
+      m_pClient->onError();
     }
-    //if (m_pClient->fd() < 0) {
-    //  return;
-    //}
-    //if (FD_ISSET(m_pClient->fd(), &writeSet)) { // socket is ready for writing
-    //}
   }
 }
 

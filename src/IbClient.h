@@ -12,6 +12,7 @@
 
 #include <node.h>
 #include <node_object_wrap.h>
+#include <sys/poll.h>
 
 #define INT_SIZE 4
 #define IN_BUF_SIZE 8192
@@ -108,6 +109,7 @@ private:
   EDecoder processMsgsDecoder_;
   Order order_; // Singleton order object
   Contract* contracts; // array
+  struct pollfd fds[1];
 
   // v8
   v8::Persistent<v8::Function> orderStatus_;
