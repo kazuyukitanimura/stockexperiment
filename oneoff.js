@@ -104,7 +104,9 @@ var handleTickPrice = function(tickerId, field, price, canAutoExecute) {
       var action = actions[company.orderId];
       var prevTickTime = company.tickTime + 1699;
       var tickTime = 1478840331260; // some init time in msec
-      var lotsDiff = company.lLotsLength - company.sLotsLength;
+      var lLotsLength = company.lLotsLength;
+      var sLotsLength = ompany.sLotsLength;
+      var lotsDiff = lLotsLength - sLotsLength;
       var maxLotDiff = company.maxLotDiff;
       if (field === 1) { // bid price
         var bid = company.bid;
@@ -116,10 +118,10 @@ var handleTickPrice = function(tickerId, field, price, canAutoExecute) {
             company.tickTime = tickTime;
           }
         } else if (!orderPlaced && (actionI === BUY || actionI === AUTO)) {
-          if (lotsDiff < maxLotDiff) {
+          if (lotsDiff < maxLotDiff && lLotsLength < 14) {
             orderPlaced = true;
             placeMyOrder(company, BUY, quantity, 'LMT', price, true, false);
-          } else if (actionI !== AUTO) {
+          } else if (actionI !== AUTO || lLotsLength > 13) {
             process.exit();
           }
         }
@@ -133,10 +135,10 @@ var handleTickPrice = function(tickerId, field, price, canAutoExecute) {
             company.tickTime = tickTime;
           }
         } else if (!orderPlaced && (actionI === SELL || actionI === AUTO)) {
-          if ((lotsDiff > -maxLotDiff && actionI === SELL) || lotsDiff >= maxLotDiff) {
+          if (((lotsDiff > -maxLotDiff && actionI === SELL) || lotsDiff >= maxLotDiff) && sLotsLength < 14) {
             orderPlaced = true;
             placeMyOrder(company, SELL, quantity, 'LMT', price, true, false);
-          } else if (actionI !== AUTO) {
+          } else if (actionI !== AUTO || sLotsLength > 13) {
             process.exit();
           }
         }

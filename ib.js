@@ -127,7 +127,7 @@ var handleRealTimeBar = function(reqId, barOpen, barHigh, barLow, barClose, volu
   if ((hour === 10 && minute === 21) || (hour === 12 && minute === 23) || (hour === 14 && minute === 0) || (hour === 15 && minute === 59)) {
     // force buy or sell
     if (lengthDiff < company.maxLotDiff) {
-      if (lLotsLength > 14) {
+      if (lLotsLength > 13) {
         log(Date(), symbol, low, high, bid, ask, mid);
         return;
       }
@@ -135,7 +135,7 @@ var handleRealTimeBar = function(reqId, barOpen, barHigh, barLow, barClose, volu
       isBuy = true;
       lmtPrice = (hour < 11 || hour > 14) ? bid : ask;
     } else {
-      if (sLotsLength > 14) {
+      if (sLotsLength > 13) {
         log(Date(), symbol, low, high, bid, ask, mid);
         return;
       }
