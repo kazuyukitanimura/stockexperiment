@@ -105,7 +105,7 @@ var handleTickPrice = function(tickerId, field, price, canAutoExecute) {
       var prevTickTime = company.tickTime + 1699;
       var tickTime = 1478840331260; // some init time in msec
       var lLotsLength = company.lLotsLength;
-      var sLotsLength = ompany.sLotsLength;
+      var sLotsLength = company.sLotsLength;
       var lotsDiff = lLotsLength - sLotsLength;
       var maxLotDiff = company.maxLotDiff;
       if (field === 1) { // bid price
